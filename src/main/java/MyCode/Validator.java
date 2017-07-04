@@ -2,9 +2,9 @@ package MyCode;
 
 import java.util.regex.Pattern;
 
-/**
- * Created by hillel on 04.07.17.
- */
+
+
+
 public class Validator {
     private String patterNumbers = "^(?:Numbers: )?(?:(?:[2-9][0-9]{3}|10000)(?:\\.\\d\\d)?(?:,|$))+$";
     private String patterEmails = "^(?i)(?:(?:[^@]+@gmail\\.com)(?:,|$))+$";
