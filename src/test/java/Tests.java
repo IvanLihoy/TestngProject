@@ -20,13 +20,23 @@ public class Tests {
         };
     }
 
-    @DataProvider(name = "EmailTest")
+    @DataProvider(name = "EmailInputs")
     public Object[][] emails() {
         return new Object[][]{
                 {"testuser1@gmail.com", Boolean.TRUE},
                 {"testuser2gmail.com", Boolean.FALSE},
                 {"testuser3@yandex.com", Boolean.FALSE},
                 {"testuser@@gmail.com", Boolean.FALSE}
+        };
+    }
+
+    @DataProvider(name = "Yandex")
+    public Object[][] newEmails() {
+        return new Object[][]{
+                {"testuser1@yandex.com", Boolean.TRUE},
+                {"testuser2yandex.com", Boolean.FALSE},
+                {"testuser3@yandex.com", Boolean.FALSE},
+                {"testuser@@yandex.com", Boolean.FALSE}
         };
     }
 
@@ -37,15 +47,15 @@ public class Tests {
     }
 
     @Test(dataProvider = "TestData", description = "Test for Numbers Validation")
-    void Positive(String testString, Boolean expectedResult){
+    void checkNumbers(String testString, Boolean expectedResult){
         System.out.println(testString);
         Assert.assertEquals( (Boolean) myValidator.numbers(testString), expectedResult,"Bad input " + testString);
     }
 
-    @Test(dataProvider = "EmailTest", description = "Test for gmail validation")
-    void checkMails(String mails, Boolean expectedResult){
-        System.out.println(mails);
-        Assert.assertEquals((Boolean) myValidator.emails(mails), expectedResult, "Done" + mails);
+    @Test(dataProvider = "EmailInputs", description = "Test for gmail validation")
+    void checkMails(String testString, Boolean expectedResult){
+        System.out.println(testString);
+        Assert.assertEquals((Boolean) myValidator.emails(testString), expectedResult, "Done" + testString);
     }
 
     @AfterMethod
