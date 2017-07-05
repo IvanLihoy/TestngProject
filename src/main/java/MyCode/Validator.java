@@ -10,6 +10,7 @@ public class Validator {
     private String patterEmails = "^(?i)(?:(?:[^@]+@gmail\\.com)(?:,|$))+$";
     private String newPattern = "^(?i)(?:(?:[^@]+@yandex\\.com)(?:,|$))+$";
 
+
     public Validator() {
     }
 
@@ -20,7 +21,7 @@ public class Validator {
     {
         return Pattern.matches(this.patterEmails, input);
     }
-    public boolean replace(String input){
-        return Pattern.matches("", input);
+    public boolean replace(String input, String replaceString){
+        return Pattern.matches(this.newPattern, input.replaceAll(patterEmails, replaceString));
     }
 }

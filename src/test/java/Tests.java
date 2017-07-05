@@ -33,10 +33,10 @@ public class Tests {
     @DataProvider(name = "Yandex")
     public Object[][] newEmails() {
         return new Object[][]{
-                {"testuser1@yandex.com", Boolean.TRUE},
-                {"testuser2yandex.com", Boolean.FALSE},
-                {"testuser3@yandex.com", Boolean.FALSE},
-                {"testuser@@yandex.com", Boolean.FALSE}
+                {"testuser1@gmail.com", "testuser1@yandex.com", Boolean.TRUE},
+//                {"testuser2yandex.com", Boolean.FALSE},
+//                {"testuser3@yandex.com", Boolean.FALSE},
+//                {"testuser@@yandex.com", Boolean.FALSE}
         };
     }
 
@@ -44,6 +44,7 @@ public class Tests {
     void setUp(){
         System.out.println("Created Object");
         myValidator = new Validator();
+
     }
 
     @Test(dataProvider = "TestData", description = "Test for Numbers Validation")
@@ -52,10 +53,16 @@ public class Tests {
         Assert.assertEquals( (Boolean) myValidator.numbers(testString), expectedResult,"Bad input " + testString);
     }
 
-    @Test(dataProvider = "EmailInputs", description = "Test for gmail validation")
-    void checkMails(String testString, Boolean expectedResult){
+    @Test(dataProvider = "EmailInputs", description = "Test for Numbers Validation")
+    void emails(String testString, Boolean expectedResult){
         System.out.println(testString);
-        Assert.assertEquals((Boolean) myValidator.emails(testString), expectedResult, "Done" + testString);
+        Assert.assertEquals( (Boolean) myValidator.emails(testString), expectedResult,"Bad input " + testString);
+    }
+
+    @Test(dataProvider = "Yandex", description = "Test for gmail validation")
+    void checkMails(String testString, String replaceString, Boolean expectedResult){
+        System.out.println(testString);
+        Assert.assertEquals((Boolean) myValidator.replace(testString, replaceString), expectedResult, "Done" + testString);
     }
 
     @AfterMethod
