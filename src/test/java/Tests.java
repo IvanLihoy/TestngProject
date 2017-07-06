@@ -33,7 +33,7 @@ public class Tests {
     @DataProvider(name = "Yandex")
     public Object[][] newEmails() {
         return new Object[][]{
-                {"testuser1@gmail.com", "testuser1@yandex.com", Boolean.TRUE},
+                  {"21342354356testuser1@345435gmail345435.co345435m", Boolean.TRUE},
 //                {"testuser2yandex.com", Boolean.FALSE},
 //                {"testuser3@yandex.com", Boolean.FALSE},
 //                {"testuser@@yandex.com", Boolean.FALSE}
@@ -60,9 +60,9 @@ public class Tests {
     }
 
     @Test(dataProvider = "Yandex", description = "Test for gmail validation")
-    void checkMails(String testString, String replaceString, Boolean expectedResult){
+    void checkMails(String testString, Boolean expectedResult){
         System.out.println(testString);
-        Assert.assertEquals((Boolean) myValidator.replace(testString, replaceString), expectedResult, "Done" + testString);
+        Assert.assertEquals((Boolean) myValidator.testReplace(testString), expectedResult, "Done" + testString);
     }
 
     @AfterMethod
