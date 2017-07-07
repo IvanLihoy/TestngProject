@@ -20,8 +20,8 @@ public class Tests {
         };
     }
 
-    @DataProvider(name = "EmailInputs")
-    public Object[][] emails() {
+    @DataProvider(name = "TestData1")
+    public Object[][] createData1() {
         return new Object[][]{
                 {"testuser1@gmail.com", Boolean.TRUE},
                 {"testuser2gmail.com", Boolean.FALSE},
@@ -30,13 +30,13 @@ public class Tests {
         };
     }
 
-    @DataProvider(name = "Yandex")
-    public Object[][] newEmails() {
+    @DataProvider(name = "TestData2")
+    public Object[][] createData2() {
         return new Object[][]{
-                  {"21342354356testuser1@345435gmail345435.co345435m", Boolean.TRUE},
-//                {"testuser2yandex.com", Boolean.FALSE},
-//                {"testuser3@yandex.com", Boolean.FALSE},
-//                {"testuser@@yandex.com", Boolean.FALSE}
+                  {"testuser1@gmail.com", Boolean.TRUE},
+                  {"testuser2yahoo.com", Boolean.FALSE},
+                  {"testuser3@mail.com", Boolean.TRUE},
+                  {"testuser@@gmail.com", Boolean.FALSE}
         };
     }
 
@@ -53,16 +53,15 @@ public class Tests {
         Assert.assertEquals( (Boolean) myValidator.numbers(testString), expectedResult,"Bad input " + testString);
     }
 
-    @Test(dataProvider = "EmailInputs", description = "Test for Numbers Validation")
-    void emails(String testString, Boolean expectedResult){
+    @Test(dataProvider = "TestData1", description = "Test for Numbers Validation")
+    void checkEmails(String testString, Boolean expectedResult){
         System.out.println(testString);
         Assert.assertEquals( (Boolean) myValidator.emails(testString), expectedResult,"Bad input " + testString);
     }
 
-    @Test(dataProvider = "Yandex", description = "Test for gmail validation")
-    void checkMails(String testString, Boolean expectedResult){
-        System.out.println(testString);
-        Assert.assertEquals((Boolean) myValidator.testReplace(testString), expectedResult, "Done" + testString);
+    @Test(dataProvider = "TestData2", description = "Test for yandex validation")
+    void checkMailsReplace(String testString, Boolean expectedResult){
+        Assert.assertEquals((Boolean) myValidator.testReplace(testString), expectedResult, "Bad input " + testString);
     }
 
     @AfterMethod
